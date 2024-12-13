@@ -88,7 +88,7 @@ async function runBruteforce() {
       logger(`🔑 Private key: ${resEtherWallet.privateKey}`, 'info')
       logger(`🤑 ETH Balance: ${resEthBalance}`, 'info')
       logger(`🤑 BNB Balance: ${resBnbBalance}`, 'info')
-      if (resEthBalance !== '$0.00' || resBnbBalance !== '$0.00' || resMaticBalance !== '$0.00') {
+      if (resEthBalance !== '$0.00' || resBnbBalance !== '$0.00') {
         logger(`🎉 Found a wallet with a non-zero balance!`, 'success')
         await fs.appendFileSync('wallets.txt', `👾 Address: ${resEtherWallet.address}\n💬 Mnemonic: ${resEtherWallet.mnemonic.phrase}\n🔑 Private key: ${resEtherWallet.privateKey}\n🤑 ETH Balance: ${resEthBalance}\n🤑 BNB Balance: ${resBnbBalance}`)
       } else {
