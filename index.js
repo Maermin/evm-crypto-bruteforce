@@ -82,17 +82,15 @@ async function runBruteforce() {
       const [resEthBalance, resBnbBalance, resMaticBalance] = await Promise.all([
         scrapeBlockscan(resEtherWallet.address, 'etherscan'),
         scrapeBlockscan(resEtherWallet.address, 'bscscan'),
-        scrapeBlockscan(resEtherWallet.address, 'polygonscan')
       ])
       logger(`👾 Address: ${resEtherWallet.address}`, 'info')
       logger(`💬 Mnemonic: ${resEtherWallet.mnemonic.phrase}`, 'info')
       logger(`🔑 Private key: ${resEtherWallet.privateKey}`, 'info')
       logger(`🤑 ETH Balance: ${resEthBalance}`, 'info')
       logger(`🤑 BNB Balance: ${resBnbBalance}`, 'info')
-      logger(`🤑 MATIC Balance: ${resMaticBalance}`, 'info')
       if (resEthBalance !== '$0.00' || resBnbBalance !== '$0.00' || resMaticBalance !== '$0.00') {
         logger(`🎉 Found a wallet with a non-zero balance!`, 'success')
-        await fs.appendFileSync('wallets.txt', `👾 Address: ${resEtherWallet.address}\n💬 Mnemonic: ${resEtherWallet.mnemonic.phrase}\n🔑 Private key: ${resEtherWallet.privateKey}\n🤑 ETH Balance: ${resEthBalance}\n🤑 BNB Balance: ${resBnbBalance}\n🤑 MATIC Balance: ${resMaticBalance}\n\n`)
+        await fs.appendFileSync('wallets.txt', `👾 Address: ${resEtherWallet.address}\n💬 Mnemonic: ${resEtherWallet.mnemonic.phrase}\n🔑 Private key: ${resEtherWallet.privateKey}\n🤑 ETH Balance: ${resEthBalance}\n🤑 BNB Balance: ${resBnbBalance}`)
       } else {
         logger(`👎 No luck this time.`, 'warning')
       }
